@@ -87,6 +87,6 @@ class BaseParaphraser:
 
 
 ## Evaluation
-To evaluate the performance on ParabothCorpus, we scrambled randomly X% of a corpus and then calculated ParaBothBleu.
+To evaluate the performance on ParabothCorpus, we scrambled randomly X% of a corpus and then calculated ParaBleu and Bleu scores. Both metrics go down when the predicted text is being scrambled (which is wanted). When instead of scrambling we paraphrase 50% of the sentences, ParaBleu is less affected than Bleu. This is because ParaBoth is able to detect paraphrases and not just exact matches.
 
-![ParaBoth vs. Bleu on Scrambled sentences](https://github.com/i4Ds/Paraboth/blob/main/parableu.png=raw?true)
+![ParaBoth vs. Bleu on Scrambled sentences](https://raw.githubusercontent.com/i4Ds/Paraboth/refs/heads/main/parableu.png)
