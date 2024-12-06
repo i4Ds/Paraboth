@@ -1,4 +1,3 @@
-```markdown
 # Paraboth
 
 Implementation of [Paraboth: Evaluating Paraphrastic Similarity in ASR Output](https://aclanthology.org/2023.swisstext-1.3.pdf). Unlike the original approach, this version:
@@ -90,4 +89,4 @@ class BaseParaphraser:
 ## Evaluation
 To evaluate the performance on ParabothCorpus, we scrambled randomly X% of a corpus and then calculated ParaBothBleu.
 
-[]
+![ParaBoth vs. Bleu on Scrambled sentences](https://github.com/i4Ds/Paraboth/blob/main/parableu.png=raw?true)
