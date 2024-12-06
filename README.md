@@ -6,6 +6,13 @@ Implementation of [Paraboth: Evaluating Paraphrastic Similarity in ASR Output](h
 
 Paraboth is especially useful for ASR systems where the transcription is also a translation at the same time, such as transcribing Swiss-German to Standard-German. Instead of comparing 1:1, it compares the paraphrases of the transcriptions to the paraphrases of the ground truth.
 
+
+## Effect
+
+To evaluate the performance on ParabothCorpus, we scrambled randomly X% of a corpus and then calculated ParaBleu and Bleu scores. Both metrics go down when the predicted text is being scrambled (which is wanted). When instead of scrambling we paraphrase 50% of the sentences, ParaBleu is less affected than Bleu. This is because ParaBoth is able to detect paraphrases and not just exact matches.
+
+![ParaBoth vs. Bleu on Scrambled sentences](https://raw.githubusercontent.com/i4Ds/Paraboth/refs/heads/main/parableu.png)
+
 ## Installation
 
 ```bash
@@ -84,9 +91,3 @@ class BaseParaphraser:
     def paraphrase_list(self, sentences: list, n_sentences=6, min_words=3):
         raise NotImplementedError("Implement this method.")
 ```
-
-
-## Evaluation
-To evaluate the performance on ParabothCorpus, we scrambled randomly X% of a corpus and then calculated ParaBleu and Bleu scores. Both metrics go down when the predicted text is being scrambled (which is wanted). When instead of scrambling we paraphrase 50% of the sentences, ParaBleu is less affected than Bleu. This is because ParaBoth is able to detect paraphrases and not just exact matches.
-
-![ParaBoth vs. Bleu on Scrambled sentences](https://raw.githubusercontent.com/i4Ds/Paraboth/refs/heads/main/parableu.png)
