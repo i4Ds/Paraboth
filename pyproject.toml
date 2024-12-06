@@ -17,6 +17,10 @@ dependencies = [
     "dtwsa",
     "evaluate",
     "scikit-learn",
+    "nltk",
+    "backoff",
+    "diskcache",
+    "transformers"
 
 ]
 [tool.pytest.ini_options]

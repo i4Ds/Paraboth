@@ -1,5 +1,4 @@
 import re
-
 import nltk
 
 
@@ -92,7 +91,12 @@ class Text:
 
     def _process_default_format(self, content):
         """Processes content without specific speaker information."""
-        self._process_line(content)
+        # Split by newlines and then by split_delimiters
+        lines = content.split("\n")
+        for line in lines:
+            line = line.strip()
+            if line:
+                self._process_line(line)
 
     def _process_line(self, text: str):
         """Splits text into sentences and adds them to the sentences list."""
@@ -121,15 +125,3 @@ class Text:
     def get_file_type(self):
         """Returns the detected file type."""
         return self.file_type
-
-
-if __name__ == "__main__":
-    from paraboth.normalizer import TextNormalizer
-
-    n = TextNormalizer()
-    file_path = "data/09_gt.txt"  # Replace with your actual file path
-    text = Text(file_path)
-    print("Detected File Type:", text.get_file_type())
-    print("\nProcessed Sentences:")
-    for sentence in text.to_list_of_strings():
-        print(sentence)

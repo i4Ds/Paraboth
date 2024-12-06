@@ -1,5 +1,4 @@
-# test_paraboth.py
-from paraboth.paraboth_sentences import paraboth
+from paraboth.paraboth_corpus import paraboth_corpus
 
 def test_paraboth_basic():
     """
@@ -19,10 +18,12 @@ def test_paraboth_basic():
     ]
     
     # Call the paraboth function
-    metrics_df, da_info = paraboth(
+    metrics_df, da_info = paraboth_corpus(
         gt_sentences,
         pred_sentences,
+        window_size=3,
         n_paraphrases=4,
+        min_matching_value=0.5,
         paraphrase_gt=True,
         paraphrase_pred=True
     )

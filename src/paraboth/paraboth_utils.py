@@ -3,7 +3,7 @@
 from dtwsa import SentenceAligner
 from sklearn.metrics.pairwise import cosine_similarity
 
-from embedder import Embedder
+from paraboth.embedder import Embedder
 
 def create_sentence_combinations(texts, window_size=1):
     combined_texts = []
@@ -107,7 +107,7 @@ def align_corpus(gt_sentences, pred_sentences, min_matching_value):
 
 
 def best_match_n_to_n_sentences(
-    gt_paraphrases, pred_sentences, min_matching_value, metric
+    gt_paraphrases, pred_sentences, metric
 ):
     """
     Find the best matching pair of sentences between ground truth paraphrases and predicted sentences.
@@ -118,8 +118,6 @@ def best_match_n_to_n_sentences(
         List of ground truth paraphrased sentences.
     pred_sentences : list of str
         List of predicted sentences.
-    min_matching_value : float
-        Minimum similarity value required for a match.
     metric : str
         The metric to use for comparing sentences (currently only supports 'wer').
 
@@ -134,9 +132,6 @@ def best_match_n_to_n_sentences(
     -----
     This function compares each prediction with each paraphrased ground truth sentence
     using the Word Error Rate (WER) metric. It returns the pair with the lowest WER.
-
-    The `min_matching_value` parameter is not currently used in the function body
-    but is included for potential future use.
 
     Examples
     --------

@@ -10,9 +10,7 @@ from paraboth.data import Text
 from paraboth.normalizer import TextNormalizer
 from paraboth.paraphraser import Paraphraser
 
-from paraboth_utils import (
-    align_corpus,
-    create_sentence_combinations,
+from paraboth.paraboth_utils import (
     best_match_n_to_n_sentences
 )
 
@@ -50,7 +48,7 @@ def paraboth(
     detailed_alignment_info = []
 
     # Go through the alignment, select the paraphrases sentences.
-    for pred_paraphrases, gt_paraphrases in zip(
+    for gt_paraphrases, pred_paraphrases in zip(
         paraphrased_gt_list, paraphrased_pred_list
     ):
         # Keep the best match for this alignment.
@@ -74,12 +72,12 @@ def paraboth(
     # Calculate metrics
     metrics = {
         "ParaBLEU": BLEU.compute(
-            predictions=[" ".join(final_predictions)],
-            references=[[" ".join(final_references)]],
+            predictions=final_predictions,
+            references=paraphrased_gt_list, # Bleu already accepts 1-to-n references.
         )["bleu"],
         "ParaWER": WER.compute(
-            predictions=[" ".join(final_predictions)],
-            references=[" ".join(final_references)],
+            predictions=final_predictions,
+            references=final_references,
         ),
     }
 

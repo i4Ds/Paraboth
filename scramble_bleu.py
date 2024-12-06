@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from paraboth.data import Text
-from metrics import calculate_wer_and_bleu
+from paraboth.metrics import calculate_wer_and_bleu
 from paraboth_corpus import paraboth
 from paraboth.paraphraser import Paraphraser
 

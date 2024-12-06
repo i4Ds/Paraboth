@@ -9,11 +9,11 @@ from evaluate import load
 from sklearn.metrics.pairwise import cosine_similarity
 
 from paraboth.data import Text
-from embedder import Embedder
+from paraboth.embedder import Embedder
 from paraboth.normalizer import TextNormalizer
 from paraboth.paraphraser import Paraphraser
 
-from paraboth_utils import (
+from paraboth.paraboth_utils import (
     align_corpus,
     create_sentence_combinations,
     best_match_n_to_n_sentences,
@@ -39,7 +39,7 @@ def paraboth_corpus(
 
     # Align sentences
     alignment, score = align_corpus(
-        combined_gt, combined_pred, window_size, min_matching_value
+        combined_gt, combined_pred, min_matching_value
     )
 
     # Fix alignment
