@@ -56,7 +56,7 @@ python sentence_example.py \ # Sentence-level comparison.
 
 ## Creating Custom Embedder and Paraphraser Classes
 
-By default, `Embedder` and `Paraphraser` use Azure OpenAI and a given paraphrasing prompt. If you want to integrate your own embeddings or paraphrasing logic, extend the following base classes and implement the required methods.
+By default, `Embedder` and `Paraphraser` use Azure OpenAI and a given paraphrasing prompt. If you want to integrate your own embeddings or paraphrasing logic, extend the following base classes and implement the required methods. Then, bass the initialized class to the `paraboth` or `paraboth_corpus` functions.
 
 ### Base Embedder Example
 
@@ -85,3 +85,9 @@ class BaseParaphraser:
     def paraphrase_list(self, sentences: list, n_sentences=6, min_words=3):
         raise NotImplementedError("Implement this method.")
 ```
+
+
+## Evaluation
+To evaluate the performance on ParabothCorpus, we scrambled randomly X% of a corpus and then calculated ParaBothBleu.
+
+[]

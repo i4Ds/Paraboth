@@ -171,5 +171,4 @@ test_bin/*
 *.txt
 embedding_cache/*
 paraphrase_cache/*
-*.png
 *.mp3
