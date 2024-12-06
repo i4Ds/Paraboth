@@ -10,8 +10,63 @@ from tqdm import tqdm
 
 from paraboth.utils import diskcache_cache
 
+class BaseParaphraser:
+    """
+    Base class for paraphrasing sentences.
 
-class Paraphraser:
+    This class defines the interface for paraphrasing operations. Subclasses should
+    implement the `paraphrase` and `paraphrase_list` methods.
+    """
+
+    def paraphrase(self, sentence: str, n_sentences: int = 6):
+        """
+        Paraphrase a single sentence.
+
+        Parameters
+        ----------
+        sentence : str
+            The input sentence to be paraphrased.
+        n_sentences : int, optional
+            The number of paraphrased sentences to generate (default is 6).
+
+        Returns
+        -------
+        list of str
+            A list containing the paraphrased sentences.
+
+        Raises
+        ------
+        NotImplementedError
+            If the method is not implemented in a subclass.
+        """
+        raise NotImplementedError
+
+    def paraphrase_list(self, sentences: list, n_sentences=6, min_words=3):
+        """
+        Paraphrase a list of sentences.
+
+        Parameters
+        ----------
+        sentences : list of str
+            The list of input sentences to be paraphrased.
+        n_sentences : int, optional
+            The number of paraphrased sentences to generate for each input sentence (default is 6).
+        min_words : int, optional
+            The minimum number of words a sentence should have to be considered for paraphrasing (default is 3).
+
+        Returns
+        -------
+        list of list of str
+            A list of lists, where each inner list contains the paraphrased sentences for the corresponding input sentence.
+
+        Raises
+        ------
+        NotImplementedError
+            If the method is not implemented in a subclass.
+        """
+        raise NotImplementedError
+
+class Paraphraser(BaseParaphraser):
     def __init__(self):
         self.client = AzureOpenAI(
             api_key=os.getenv("AZURE_OPENAI_KEY"),

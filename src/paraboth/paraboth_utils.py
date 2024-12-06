@@ -52,7 +52,7 @@ def align_sentences(
     return alignment, score
 
 
-def align_corpus(gt_sentences, pred_sentences, min_matching_value):
+def align_corpus(gt_sentences, pred_sentences, min_matching_value, embedder=None):
     """
     Align two corpora of sentences using embedding-based similarity.
 
@@ -68,6 +68,8 @@ def align_corpus(gt_sentences, pred_sentences, min_matching_value):
         Predicted sentences to align with ground truth.
     min_matching_value : float
         Minimum similarity score required for a match between sentences.
+    embedder: Embedder
+        Embedder object to use for sentence embeddings.
 
     Returns
     -------
@@ -82,7 +84,7 @@ def align_corpus(gt_sentences, pred_sentences, min_matching_value):
     a similarity matrix, and then aligns the sentences based on this similarity.
     """
     # Initialize the model
-    model = Embedder()
+    model = Embedder() if not embedder else embedder
 
     # Compute embeddings
     gt_embeddings = model.embed_chunks(gt_sentences)

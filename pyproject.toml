@@ -1,6 +1,6 @@
 [project]
 name = "paraboth"
-version = "0.1.2"
+version = "0.1.3"
 authors = [{name = "Vincenzo Timmel", email = "vincenzo.timmel@fhnw.ch"}]
 description = "A Python package implementing Paraboth with some improvements: https://aclanthology.org/2023.swisstext-1.3.pdf."
 readme = "README.md"

@@ -7,8 +7,39 @@ from tqdm import tqdm
 
 from paraboth.utils import diskcache_cache
 
+class BaseEmbedder:
+    """
+    An abstract base class for text embedding operations.
 
-class Embedder:
+    This class defines the interface for embedding-related operations such as
+    generating embeddings for text chunks, retrieving embeddings, and saving/loading
+    embeddings to/from files. Concrete implementations should inherit from this class
+    and provide specific implementations for these methods.
+    Methods
+    -------
+    embed_chunks(text_chunks, batch_size=100)
+        Abstract method to embed a list of text chunks.
+    get_embeddings()
+        Abstract method to retrieve stored embeddings.
+    save_embeddings(file_path)
+        Abstract method to save embeddings to a file.
+    load_embeddings(file_path)
+        Abstract method to load embeddings from a file.
+    """
+
+    def embed_chunks(self, text_chunks, batch_size=100):
+        raise NotImplementedError
+
+    def get_embeddings(self):
+        raise NotImplementedError
+
+    def save_embeddings(self, file_path):
+        raise NotImplementedError
+
+    def load_embeddings(self, file_path):
+        raise NotImplementedError
+
+class Embedder(BaseEmbedder):
     """
     A class for generating and managing text embeddings using Azure OpenAI.
 
@@ -34,7 +65,6 @@ class Embedder:
     load_embeddings(file_path)
         Load embeddings from a file.
     """
-
     def __init__(self):
         self.client = AzureOpenAI(
             api_key=os.getenv("AZURE_OPENAI_KEY"),

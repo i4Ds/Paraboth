@@ -4,9 +4,7 @@ import argparse
 import os
 
 import pandas as pd
-from dtwsa import SentenceAligner
 from evaluate import load
-from sklearn.metrics.pairwise import cosine_similarity
 
 from paraboth.data import Text
 from paraboth.embedder import Embedder
@@ -26,6 +24,8 @@ def paraboth_corpus(
     window_size,
     n_paraphrases,
     min_matching_value,
+    paraprasher=None,
+    embedder=None,
     paraphrase_gt=True,
     paraphrase_pred=True,
 ):
@@ -39,7 +39,7 @@ def paraboth_corpus(
 
     # Align sentences
     alignment, score = align_corpus(
-        combined_gt, combined_pred, min_matching_value
+        combined_gt, combined_pred, min_matching_value, embedder
     )
 
     # Fix alignment
@@ -48,7 +48,7 @@ def paraboth_corpus(
     )
 
     # Initialize paraphraser
-    paraphraser = Paraphraser()
+    paraphraser = Paraphraser() if paraprasher is None else paraprasher
 
     # Generate multiple paraphrases for each ground truth sentence
     if paraphrase_gt:

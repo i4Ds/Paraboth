@@ -18,6 +18,7 @@ def paraboth(
     gt_sentences,
     pred_sentences,
     n_paraphrases,
+    paraphraser=None,
     paraphrase_gt=True,
     paraphrase_pred=True,
 ):
@@ -26,7 +27,7 @@ def paraboth(
     BLEU = load("bleu")
 
     # Initialize paraphraser
-    paraphraser = Paraphraser()
+    paraphraser = Paraphraser() if paraphraser is None else paraphraser
 
     # Generate multiple paraphrases for each ground truth sentence
     if paraphrase_gt:
