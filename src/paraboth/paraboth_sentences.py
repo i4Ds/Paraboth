@@ -10,9 +10,8 @@ from paraboth.data import Text
 from paraboth.normalizer import TextNormalizer
 from paraboth.paraphraser import Paraphraser
 
-from paraboth.paraboth_utils import (
-    best_match_n_to_n_sentences
-)
+from paraboth.paraboth_utils import best_match_n_to_n_sentences
+
 
 def paraboth(
     gt_sentences,
@@ -74,7 +73,7 @@ def paraboth(
     metrics = {
         "ParaBLEU": BLEU.compute(
             predictions=final_predictions,
-            references=paraphrased_gt_list, # Bleu already accepts 1-to-n references.
+            references=paraphrased_gt_list,  # Bleu already accepts 1-to-n references.
         )["bleu"],
         "ParaWER": WER.compute(
             predictions=final_predictions,

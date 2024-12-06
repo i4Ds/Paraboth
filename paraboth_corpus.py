@@ -6,9 +6,10 @@ import os
 from paraboth.data import Text
 from paraboth.normalizer import TextNormalizer
 
-from paraboth_corpus import (
-    paraboth_corpus
-)
+from paraboth.paraboth_corpus import paraboth_corpus
+
+from paraphraser import Paraphraser
+from embedder import Embedder
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -63,10 +64,13 @@ if __name__ == "__main__":
     pred_sentences = Text(args.pred).to_list_of_strings()
 
     # Normalize the sentences
-
     normalizer = TextNormalizer()
     normalized_gt = normalizer.normalize(gt_sentences)
     normalized_pred = normalizer.normalize(pred_sentences)
+
+    # Initialize Paraphraser and Embedder
+    paraphraser = Paraphraser()
+    embedder = Embedder()
 
     metrics, detailed_alignment_info = paraboth_corpus(
         normalized_gt,

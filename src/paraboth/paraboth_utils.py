@@ -5,6 +5,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from paraboth.embedder import Embedder
 
+
 def create_sentence_combinations(texts, window_size=1):
     combined_texts = []
     n = len(texts)
@@ -108,9 +109,7 @@ def align_corpus(gt_sentences, pred_sentences, min_matching_value, embedder=None
     return alignment, score
 
 
-def best_match_n_to_n_sentences(
-    gt_paraphrases, pred_sentences, metric
-):
+def best_match_n_to_n_sentences(gt_paraphrases, pred_sentences, metric):
     """
     Find the best matching pair of sentences between ground truth paraphrases and predicted sentences.
 

@@ -9,6 +9,8 @@ from paraboth.normalizer import TextNormalizer
 
 from paraboth.paraboth_sentences import paraboth
 
+from paraphraser import Paraphraser
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Evaluate ASR predictions against ground truth."
@@ -50,14 +52,17 @@ if __name__ == "__main__":
     pred_sentences = Text(args.pred).to_list_of_strings()
 
     # Normalize the sentences
-
     normalizer = TextNormalizer()
     normalized_gt = normalizer.normalize(gt_sentences)
     normalized_pred = normalizer.normalize(pred_sentences)
 
+    # Initialize the paraphraser
+    paraphraser = Paraphraser()
+
     metrics, detailed_alignment_info = paraboth(
         normalized_gt,
         normalized_pred,
+        paraphraser=paraphraser,
         n_paraphrases=args.n_paraphrases,
         paraphrase_gt=args.paraphrase_gt,
         paraphrase_pred=args.paraphrase_pred,

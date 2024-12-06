@@ -24,8 +24,8 @@ def paraboth_corpus(
     window_size,
     n_paraphrases,
     min_matching_value,
-    paraprasher=None,
-    embedder=None,
+    paraphraser,
+    embedder,
     paraphrase_gt=True,
     paraphrase_pred=True,
 ):
@@ -46,9 +46,6 @@ def paraboth_corpus(
     print(
         f"Mean embedding score of the best sentence-to-sentence alignment: {score/len(alignment):.3f}"
     )
-
-    # Initialize paraphraser
-    paraphraser = Paraphraser() if paraprasher is None else paraprasher
 
     # Generate multiple paraphrases for each ground truth sentence
     if paraphrase_gt:
