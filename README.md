@@ -38,7 +38,7 @@ This combined approach ensures that the final alignment between predicted and gr
 
 ### Corpus-level comparison
 ```bash
-python corpus_example.py \ # Corpus-level comparison.
+python paraboth_corpus.py \ # Corpus-level comparison.
 --gt path/to/gt_corpus.txt \
 --pred path/to/pred_corpus.txt \
 --n_paraphrases 6 \ # Number of paraphrases to generate for each sentence.
@@ -51,7 +51,7 @@ python corpus_example.py \ # Corpus-level comparison.
 
 ### Sentence-level comparison
 ```bash
-python sentence_example.py \ # Sentence-level comparison.
+python paraboth_sentences.py \ # Sentence-level comparison.
 --gt path/to/gt_sentences.txt \
 --pred path/to/pred_sentences.txt \
 --n_paraphrases 6 \ # Number of paraphrases to generate for each sentence.
